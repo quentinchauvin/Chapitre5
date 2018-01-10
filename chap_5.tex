@@ -1,0 +1,259 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[francais]{babel}
+\usepackage[francais]{babel}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,bm, mathtools}
+\usepackage{graphicx}
+\usepackage{array}
+%\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage{comment}
+\usepackage{boiboites}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%          DEFINITIONS D'USAGE       - RACCOURCI                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1.}
+\definecolor{qqwuqq}{rgb}{0,0.39,0}
+\definecolor{qqzzff}{rgb}{0,0.6,1}
+\definecolor{uququq}{rgb}{0.25,0.25,0.25}
+\definecolor{xdxdff}{rgb}{0.49,0.49,1}
+\definecolor{qqqqff}{rgb}{0,0,1}
+\definecolor{ttqqqq}{rgb}{0.2,0,0}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0}
+\definecolor{cqcqcq}{rgb}{0.75,0.75,0.75}
+\definecolor{cyann}{rgb}{0.79,0.88,1} % for strings
+\definecolor{yel}{rgb}{1,1,0.75} % for strings
+\definecolor{redd}{rgb}{1,.5,.5} % for strings
+%%%%%%%%%%%%%%%%%%%%%%%%%% Grilles %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+
+%\usepackage{./packages/boites_exemples}
+\usepackage{color}
+\definecolor{darkblue}{rgb}{0,0,0}
+\usepackage{hyperref}                 
+ \hypersetup{
+    hyperfigures = true,
+    colorlinks = true,
+    linkcolor=darkblue
+    }
+%pour redefinir les marges
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%% ENVIRONNEMENT PROP ET DEF PERSONNEL %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newboxedtheorem[titlecolor = black, titlebackground = white, background = white,
+titleboxcolor = black, boxcolor = black, thcounter=, size = .9\textwidth]{coro}{Corollaire}{compteurCO}
+
+\newboxedtheorem[titlecolor = black, titlebackground = redd, background = yel,
+titleboxcolor = black, boxcolor = black, thcounter=, size = .9\textwidth]{Prop}{Propriété}{compteurPR}
+
+\newboxedtheorem[titlecolor = black, titlebackground = redd, background = yel,
+titleboxcolor = black, boxcolor = black, thcounter=, size = .9\textwidth]{Propo}{Proposition}{compteurPP}
+
+\newboxedtheorem[titlecolor = black, titlebackground = white, background = white,
+titleboxcolor = black, boxcolor = black, thcounter=, size = .9\textwidth]{theo}{Théorème}{compteurTH}
+
+\newboxedtheorem[titlecolor = black, titlebackground = white, background = white,
+titleboxcolor = black, boxcolor = black, thcounter=, size = .9\textwidth]{lem}{Lemme}{compteurLE}
+
+\newboxedtheorem[titlecolor = black, titlebackground = cyann , background = yel,
+titleboxcolor = black, boxcolor = black, thcounter=, size = .9\textwidth]{Def}{Définition}{compteurDE}
+
+%%%%%%%%%%%%%%%%%%%%% STYLE DES THEOREMES PROP ETC %%%%%%%%%%%%%%%%
+\newtheoremstyle{StyleTheo_will}
+{3pt}
+{5pt}
+{\upshape}
+{}
+{\scshape}
+{\newline}
+{0pt}
+{}
+%%%%%%%%%%%%%%%%%%%% STYLE DES DEFINITIONS   %%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{StyleDef_will}
+{3pt}
+{5pt}
+{\upshape}
+{}
+{\slshape \bfseries}
+{\newline}
+{0pt}
+{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%  DECLARATION DES STYLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{StyleTheo_will}
+%\newtheorem{Prop}{Propri\'et\'e}[section]
+%\newtheorem{Theo}{Th\'eor\`eme}[section]
+%\newtheorem{Lem}{Lemme}[section]
+%\newtheorem{coro}{Corollaire}[section]
+
+
+%\theoremstyle{StyleDef_will}
+%\newtheorem{Def}{D\'efinition}[section]
+
+\theoremstyle{remark}
+\newtheorem*{Rem}{Remarque}
+\newtheorem*{Ex}{Exemple}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\usepackage{fancyhdr}
+\lhead{Chapitre 4 SFP-2104}
+\newcommand{\argmin}{\arg\!\min}
+\newcommand{\argmax}{\arg\!\max}
+\newcommand\rr{\mathbb{R}}
+\newcommand\nn{\mathbb{N}}
+\newcommand\begit{\begin{itemize}}
+\newcommand\enit{\end{itemize}}
+\newcommand\deff{{\bf Définition : }}
+\newcommand\propp{{\bf Proposition : }}
+\newcommand\itt{\item[$\bullet$]}
+\newcommand{\grille}[1]{
+ \begin{center}
+  \begin{tikzpicture}
+    \draw [very thin, gray] (0,0) grid[step=0.5] (15.5,#1);
+  \end{tikzpicture}
+ \end{center}
+}
+\newcommand{\grillepage}{\grille{24.5}}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+
+\oddsidemargin=0pt
+\topmargin=-60pt
+\textwidth=450pt
+\textheight=700pt
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6cm}
+
+\title{Interférences d'ondes multiples}
+\author{Quentin CHAUVIN}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+Les interférences d'ondes multiples peuvent être obtenues par divisions d'amplitude d'une onde incidente sur une lame à face parallèle dont le pouvoir réflécteur des dioptres à été augmenté. Cela sera obtenu en déposant soit une couche de métal d'épaisseur adaptée soit un film diélectrique constitué de couches de haut et bas indices alternés. La figure d'interférence est alors issu de la superposition des ondes engendrées par des réflexions multiples dans la lame mince pour des amplitudes similaires.
+\section{\'Etude de l'onde transmise par la lame}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw [color=cqcqcq,dash pattern=on 1pt off 1pt, xstep=0.5cm,ystep=0.5cm] (3,-1) grid (11,5.5);
+\clip(3,-1) rectangle (11,5.5);
+\draw [shift={(8,1)},color=qqwuqq,fill=qqwuqq,fill opacity=0.15] (0,0) -- (-90:0.46) arc (-90:-75.96:0.46) -- cycle;
+\draw [shift={(-15,-9)},color=qqwuqq,fill=qqwuqq,fill opacity=0.1] (0,0) -- (270:0.46) arc (270:296.57:0.46) -- cycle;
+\draw [shift={(-14,-6)},color=qqwuqq,fill=qqwuqq,fill opacity=0.1] (0,0) -- (270:0.46) arc (270:296.57:0.46) -- cycle;
+\draw [shift={(-6,-1)},color=qqwuqq,fill=qqwuqq,fill opacity=0.1] (0,0) -- (270:0.46) arc (270:284.04:0.46) -- cycle;
+\draw (10,3)-- (3,3);
+\draw (3,1)-- (10,1);
+\draw (3,3)-- (10,3);
+\draw [dash pattern=on 3pt off 3pt] (5,3.5)-- (5,0.5);
+\draw [dash pattern=on 3pt off 3pt] (6,2)-- (6,0);
+\draw [dash pattern=on 3pt off 3pt] (8,2)-- (8,0);
+\draw [dash pattern=on 3pt off 3pt] (7,4)-- (7,2);
+\draw (4.5,5)-- (5,3);
+\draw (4.77,3.92) -- (4.65,3.97);
+\draw (4.77,3.92) -- (4.85,4.03);
+\draw (5,3)-- (6,1);
+\draw (5.54,1.93) -- (5.41,1.95);
+\draw (5.54,1.93) -- (5.59,2.05);
+\draw (6,1)-- (6.5,-1);
+\draw (6.27,-0.08) -- (6.15,-0.03);
+\draw (6.27,-0.08) -- (6.35,0.03);
+\draw (6,1)-- (7,3);
+\draw (6.57,2.14) -- (6.63,2.03);
+\draw (6.57,2.14) -- (6.44,2.12);
+\draw (6.5,2) -- (6.56,1.88);
+\draw (6.5,2) -- (6.37,1.97);
+\draw (7,3)-- (8,1);
+\draw (7.54,1.93) -- (7.41,1.95);
+\draw (7.54,1.93) -- (7.59,2.05);
+\draw (7.46,2.07) -- (7.34,2.1);
+\draw (7.46,2.07) -- (7.52,2.19);
+\draw (7.61,1.78) -- (7.48,1.81);
+\draw (7.61,1.78) -- (7.66,1.9);
+\draw (8,1)-- (8.5,-1);
+\draw (8.27,-0.08) -- (8.15,-0.03);
+\draw (8.27,-0.08) -- (8.35,0.03);
+\draw (8.23,0.08) -- (8.11,0.13);
+\draw (8.23,0.08) -- (8.31,0.18);
+\draw (8.31,-0.23) -- (8.19,-0.18);
+\draw (8.31,-0.23) -- (8.39,-0.13);
+\draw (8,1)-- (9,3);
+\draw [dash pattern=on 3pt off 3pt] (9,4)-- (9,2);
+\draw (3.23,2.41) node[anchor=north west] {$n$};
+\draw (3.18,4) node[anchor=north west] {$n_0$};
+\draw (3.18,0.16) node[anchor=north west] {$n_0$};
+\draw (4.45,3.52) node[anchor=north west] {$I_1$};
+\draw (5.55,0.91) node[anchor=north west] {$J_1$};
+\draw (7.38,3.58) node[anchor=north west] {$I_2$};
+\draw (8.37,0.94) node[anchor=north west] {$J_2$};
+\draw (6.12,0.53)-- (8,1);
+\draw (6.31,0.62) node[anchor=north west] {$H'$};
+\draw [->] (10.5,2) -- (10.5,3);
+\draw [->] (10.5,2) -- (10.5,1);
+\draw (10.73,2.32) node[anchor=north west] {$e$};
+\end{tikzpicture}
+\end{center}
+Soit pour une incide proche de la normale, les coeficients de réflexions en amplitude $r_1$ du milieu $1$ d'indice $n_0$ sur le milieu 2 d'indice $n$ et $r_2$ du milieu $2$ d'indice $n$ sur le milieu 2 d'indice $n_0$ et les coeficients de réflexion en amplitude $t_1$ du milieu 1 vers le milieu 2 $t_2$ du milieu 2 vers le milieu 1. 
+\[r_1 = \frac{n_0 - n}{n_0 +n} \verb|   |\]
+Concernant les coefficients de réflexion en transmission et en énergie pour une incidence proche de la normale sont :
+\[R_1 = r_1^2 = r_2^2 = R_2 \verb|  | T_1 = t_1^2 \frac{n}{n_0} = t_1t_2 \verb |  | T_2 = t_2^2 \frac{n}{n_0} =t_2t_1\]
+\[\Rightarrow R_1 = R_2 = R \verb|  | T_1 = T_2 = T\]
+Compte tenu de la loi de conservation de l'enrgie, on a pour des milieux transparents (non absorbant) : $R + T =1$.
+
+Insirer FIGURE
+
+Considérant une amplitude $a$ de l'onde incidente, les amplitudes des premières ondes transmises sont $at_1t_2$ $at_1t_2r_2^2$, $at_1t_2r_2^4$ et  $at_1t_2r_2^6$ soit $AT$, $ATR$, $ATR^2$ et $ATR^3$. Soit le champs électrique de l'onde incidente : $\overrightarrow{E_0} = e^{j\varPhi_0}e^{jwt}$ avec $\varPhi_0 = - \overrightarrow{k}\overrightarrow{r} + \phi_0$. Soit $\overrightarrow{E}$ le champs électrique de l'onde résultant des interférences à l'infini d'ondes multiples dont les champs sont : $\overrightarrow{E_1}$, $\overrightarrow{E_2}$,$\overrightarrow{E_3}$ etc. 
+\[\overrightarrow{E} = \overrightarrow{E_1} + \overrightarrow{E_2} + \overrightarrow{E_3} + ... \]
+
+Pour une lame à face parallèle les ondes véhiculées par les rayons transmis par la lame sont parallèle entre elles. D'où les champs électriques pour les trois premières ondes transmises : 
+\[\overrightarrow{E_1} = aTe^{j\varPhi_0}e^{jwt}\overrightarrow{u}\] 
+\[\overrightarrow{E_2} = aTRe^{j(\varPhi_0+ \varPhi)}e^{jwt}\overrightarrow{u}\] 
+\[\overrightarrow{E_3} = aTR^2e^{j(\varPhi_0+ 2\varPhi)}e^{jwt}\overrightarrow{u}\] 
+avec $\varPhi = \frac{2\pi}{\lambda_0} 2ne\cos r$
+\[I = n\overrightarrow{E}\overrightarrow{E}* =nAA*\]
+Soit $A_0 = ae^{j\varPhi_0}$, $A_1 = aTe^{j\varPhi_0}$, $A_2 = aTRe^{j\varPhi_0}$, $A_3 = aTR^2e^{j\varPhi_0}$ les amplitudes complexes respectives de l'onde incidentes . L'amplitude complexe résultant des interférences des ondes multiples transmises $A = \sum_{m=1}^\infty A_m$ et donc : $A = A_0T[1+ Re^{j\varPhi}+R^2e^{j2\varPhi} + ... + R^{m-1}e^{j(m-1)\varPhi}$.
+
+Le terme $S$ correspond à la somme des termes d'une suite géométrique de raison $\alpha = Re^{j\varPhi}$ avec $R<1$ et $m$ termes.
+\[S =\frac{ 1-\alpha^m}{1-\alpha}\]
+Avec $\alpha_m$ qui tend vers 0 quand S tend vers l'infini : 
+\[S  = \frac{1}{1 - Re^{j\varPhi}}\]
+\[\Rightarrow A = \frac{A_0T}{1 - Re^{j\varPhi}}\]
+\[\Rightarrow A^* = \frac{A_0^*T}{1 - Re^{-j\varPhi}}\]
+L'intensité de l'onde transmise $I$ va être égal à : \[ I = \overrightarrow{E} \overrightarrow{E}^* = AA^* = \frac{a^2T^2}{(1 - Re^{j\varPhi})(1 + Re^{j\varPhi})}\]
+\[ I = \frac{a^2T^2}{1 - Re^{j\varPhi} - Re^{-j\varPhi} + R^2}\]
+\[ I = \frac{a^2T^2}{1 - 2R\cos \varPhi + R^2}\]
+\[ I = \frac{a^2T^2}{(1 - R)^2 +2R(1- \cos \varPhi)}\]
+Trigonométrie : $ \cos 2a = 1 - 2 \sin^2 a$.
+\[I = \frac{a^2T^2}{(1 - R)^2 +2R \times 2R \sin^2\frac{\varPhi}{2}} = \frac{a^2T^2}{(1 - R)^2}\frac{1}{\frac{4R}{(1-R)^2}\sin^2\frac{\varPhi}{2}}\]
+\[I =\frac{I_0T^2}{(1 - R)^2}\frac{1}{\frac{4R}{(1-R)^2}\sin^2\frac{\varPhi}{2}}\]
+L(intensité lumineuse résultante maximun est $I_{max} = \frac{I_0T^2}{\frac{4R}{(1-R)^2}\sin^2\frac{\varPhi}{2}}$. On appel la fonction suivante fonction d'Airy : $F_a(\varPhi) = \frac{1}{1 + M\sin^2\frac{\varPhi}{2}}$
+
+La fonction d'Airy est une fonction paire symétrique. Elle est constitué d'une succéssion de pics Lorentzien puisque pour $\varPhi = 0$ à modulo $2\pi$ :
+\[F_a(\varPhi) = \frac{1}{1 + M\frac{\varPhi^2}{4}}\]
+
+On déduit la phase $\varPhi_{\frac{1}{2}}$ pour $I = \frac{I_{max}}{2}$ : 
+\[\varPhi_{\frac{1}{2}} = \frac{2}{\sqrt{M}} = \frac{1-R}{\sqrt{R}}\]
+\[\varDelta_\varPhi = 2 \varPhi_{1/2} = \frac{2(1 -R)}{\sqrt{R}}\]
+Avec $M = \frac{4R}{(1 - R)^2}$ et $\Delta_\varPhi$ représente la largeur de pic à mi-hauteur pour laquelle $I$ est supérieur ou égal à $\frac{I_{max}}{2}$. On défini la finesse d'un pic $F = \frac{2\pi}{\Delta_\varPhi}$. Quand $R$ augmente la largeur de pic diminue et la finesse augmente.\\
+Exemple : Photo
+\[\gamma = \frac{I_{max} - I_{min}}{I_{max} + I_{min}} = \frac{1 - \frac{1}{1+M}}{1 + \frac{1}{1+M}} = \frac{M}{M + 2} = \frac{\frac{4R}{(1 - R)2}}{\frac{4R}{(1 -R)^2} + 2}\]
+\[\gamma = \frac{2R}{2R + (1- R)^2} = \frac{2R}{1+R^2}\]
+
+Ainsi le contraste tend vers 1 quand $R$ tend vers 1.
+
+Insirer graphique 2
+\section{Figure d'interférence}
+Comme pour les interférences à deux ondes les points d'égale intensité sont ceux pour lesquels le déphasage $\varPhi$ c'est à dire pour une lame d'épaisseur constante $e$ ceux pour lesquels $R = \frac{2\pi}{\lambda_0}$ est une constante donc $i$ est une constante. Comme pour les anneaux d'Haidinger la figure d'interférence d'anneaux localisés à l'infini et peut également être observé dans le plan focal d'une lentille convergente. Les anneaux obtenus par interférence d'onde multiple se distinguent des anneaux d'Haidiger par leur plus grande finesse. Par ailleur compte tenu du traitement de surface des dioptres de la lame à face parallèle le coefficien de réflexion en amplitude $r$ est élevé, les ondes transmises ont des amplitudes beaucoup plus proche les une des autres que les ondes réfléchies contrairement au cas des dioptres non traités. Le contraste de la figure d'interférence obtenue par transmission est bien meilleur que celui par refexion.
+\end{document}
